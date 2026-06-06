@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Colmena CIA — Compañía de Danza Contemporánea</title>
+  <meta name="description" content="La Colmena CIA es una compañía de danza contemporánea con un lenguaje artístico propio, en gira por festivales y teatros nacionales e internacionales." />
+  <meta property="og:title" content="La Colmena CIA" />
+  <meta property="og:description" content="Compañía de danza contemporánea. Obras, agenda y contratación." />
+  <meta property="og:image" content="assets/images/logo.jpg" />
+  <link rel="icon" href="assets/images/logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav__logo" aria-label="La Colmena CIA - Inicio">
+      <img src="assets/images/logo.jpg" alt="Logo La Colmena CIA" />
+      <span class="nav__logo-text">La <span>Colmena</span></span>
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="obras/index.html">Obras</a></li>
+      <li><a href="agenda/index.html">Agenda</a></li>
+      <li><a href="compania/index.html">Compañía</a></li>
+      <li><a href="prensa/index.html">Prensa</a></li>
+      <li><a href="talleres/index.html">Talleres</a></li>
+      <li><a href="contacto/index.html" class="nav__cta">Contacto</a></li>
+    </ul>
+    <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav__mobile" aria-label="Menú móvil">
+    <a href="obras/index.html">Obras</a>
+    <a href="agenda/index.html">Agenda</a>
+    <a href="compania/index.html">Compañía</a>
+    <a href="prensa/index.html">Prensa</a>
+    <a href="talleres/index.html">Talleres</a>
+    <a href="contacto/index.html">Contacto</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" aria-label="Portada">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__pattern" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow">Compañía de Danza Contemporánea</p>
+    <h1 class="hero__title">La<br><em>Colmena</em><br>CIA</h1>
+    <p class="hero__tagline">
+      Cuerpos en colisión. Espacio como partitura.<br>
+      Un lenguaje físico que interroga lo colectivo y lo singular.
+    </p>
+    <div class="hero__actions">
+      <a href="obras/index.html" class="btn btn--primary">Ver obras</a>
+      <a href="contacto/index.html" class="btn btn--outline">Contratación</a>
+    </div>
+  </div>
+</section>
+
+<!-- OBRAS DESTACADAS -->
+<section aria-labelledby="obras-title">
+  <div class="section">
+    <div class="section__header">
+      <div>
+        <span class="section__label">Repertorio</span>
+        <h2 class="section__title" id="obras-title">Obras destacadas</h2>
+      </div>
+      <a href="obras/index.html" class="section__link">Ver todo el repertorio →</a>
+    </div>
+    <div class="obras-grid">
+
+      <article class="obra-card" data-estado="gira">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="obras/enjambre.html" class="obra-card__overlay" aria-label="Ver Enjambre">
+          <span class="obra-card__tag obra-card__tag--gira">En gira</span>
+          <h3 class="obra-card__title">Enjambre</h3>
+          <p class="obra-card__meta">2023 · Grupo · 55 min</p>
+          <p class="obra-card__desc">La colmena como sistema nervioso. Siete cuerpos que piensan juntos y se disuelven en el peso de la colectividad.</p>
+        </a>
+      </article>
+
+      <article class="obra-card" data-estado="gira" style="background:#12100e;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="obras/umbral.html" class="obra-card__overlay" aria-label="Ver Umbral">
+          <span class="obra-card__tag obra-card__tag--gira">En gira</span>
+          <h3 class="obra-card__title">Umbral</h3>
+          <p class="obra-card__meta">2021 · Solo · 40 min</p>
+          <p class="obra-card__desc">Solo de la coreógrafa. Una investigación sobre la frontera entre el instinto y la decisión.</p>
+        </a>
+      </article>
+
+      <article class="obra-card" data-estado="creacion" style="background:#0d0b0a;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="obras/raiz.html" class="obra-card__overlay" aria-label="Ver Raíz">
+          <span class="obra-card__tag obra-card__tag--creacion">En creación</span>
+          <h3 class="obra-card__title">Raíz</h3>
+          <p class="obra-card__meta">2024 · Dúo · 35 min</p>
+          <p class="obra-card__desc">Nueva pieza en proceso. Dos cuerpos que negocian el suelo como memoria y herencia.</p>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMAS FECHAS -->
+<section class="section--dark" aria-labelledby="agenda-title">
+  <div class="section">
+    <div class="section__header">
+      <div>
+        <span class="section__label">Gira</span>
+        <h2 class="section__title" id="agenda-title">Próximas funciones</h2>
+      </div>
+      <a href="agenda/index.html" class="section__link">Agenda completa →</a>
+    </div>
+    <div class="agenda-list" role="list">
+
+      <div class="agenda-item reveal" role="listitem">
+        <div class="agenda-date">
+          <div class="agenda-date__day">14</div>
+          <div class="agenda-date__month">Sep</div>
+        </div>
+        <div class="agenda-info">
+          <p class="agenda-info__obra">Enjambre</p>
+          <p class="agenda-info__venue"><strong>Festival de Otoño de Madrid</strong> · Madrid, España</p>
+        </div>
+        <div class="agenda-actions">
+          <a href="agenda/index.html" class="btn btn--sm btn--outline">Entradas</a>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" role="listitem">
+        <div class="agenda-date">
+          <div class="agenda-date__day">21</div>
+          <div class="agenda-date__month">Sep</div>
+        </div>
+        <div class="agenda-info">
+          <p class="agenda-info__obra">Umbral</p>
+          <p class="agenda-info__venue"><strong>Teatro Central</strong> · Sevilla, España</p>
+        </div>
+        <div class="agenda-actions">
+          <a href="agenda/index.html" class="btn btn--sm btn--outline">Entradas</a>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" role="listitem">
+        <div class="agenda-date">
+          <div class="agenda-date__day">08</div>
+          <div class="agenda-date__month">Oct</div>
+        </div>
+        <div class="agenda-info">
+          <p class="agenda-info__obra">Enjambre</p>
+          <p class="agenda-info__venue"><strong>Festival Grec 2024</strong> · Barcelona, España</p>
+        </div>
+        <div class="agenda-actions">
+          <a href="agenda/index.html" class="btn btn--sm btn--outline">Entradas</a>
+        </div>
+      </div>
+
+      <div class="agenda-item reveal" role="listitem">
+        <div class="agenda-date">
+          <div class="agenda-date__day">19</div>
+          <div class="agenda-date__month">Nov</div>
+        </div>
+        <div class="agenda-info">
+          <p class="agenda-info__obra">Enjambre</p>
+          <p class="agenda-info__venue"><strong>Centre Chorégraphique National</strong> · Lyon, Francia</p>
+        </div>
+        <div class="agenda-actions">
+          <a href="agenda/index.html" class="btn btn--sm btn--outline">Info</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CITA DE PRENSA -->
+<div class="press-quote reveal" aria-label="Crítica destacada">
+  <blockquote class="press-quote__text">
+    Una coreógrafa que hace pensar al cuerpo antes que al ojo. Raramente el movimiento ha sido tan necesario.
+  </blockquote>
+  <cite class="press-quote__source">El País — Festival de Otoño, Madrid</cite>
+</div>
+
+<!-- COMPAÑÍA BRIEF -->
+<section aria-labelledby="cia-title">
+  <div class="section">
+    <div class="company-brief">
+      <div class="company-brief__img reveal">
+        <img src="assets/images/logo.jpg"
+             alt="La Colmena CIA — imagen de compañía"
+             loading="lazy" />
+      </div>
+      <div class="company-brief__text reveal">
+        <div>
+          <span class="section__label">Sobre la compañía</span>
+        </div>
+        <h2 id="cia-title">Un lenguaje<br><em>construido</em><br>desde adentro</h2>
+        <div class="separator"></div>
+        <p>
+          La Colmena CIA nace de la necesidad de crear un espacio escénico donde lo colectivo y lo individual coexisten en tensión creativa. La compañía trabaja desde la investigación corporal, el análisis del movimiento y la colaboración interdisciplinar.
+        </p>
+        <p>
+          Con sede en Sevilla, La Colmena lleva sus obras a festivales y teatros nacionales e internacionales, construyendo un repertorio que crece desde la pregunta más que desde la respuesta.
+        </p>
+        <a href="compania/index.html" class="btn btn--outline mt-2">Conocer la compañía</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO STRIP -->
+<div class="contact-strip" role="complementary" aria-label="Contacto de contratación">
+  <div>
+    <h2>¿Programas danza?</h2>
+    <p>Consulta disponibilidad y condiciones de contratación.</p>
+  </div>
+  <a href="contacto/index.html" class="btn">Escribir a la compañía →</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" aria-label="Pie de página">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <img src="assets/images/logo.jpg" alt="Logo La Colmena CIA" />
+      <p>Compañía de danza contemporánea con sede en Sevilla. En gira nacional e internacional.</p>
+    </div>
+    <nav class="footer__col" aria-label="Secciones">
+      <h4>Secciones</h4>
+      <ul role="list">
+        <li><a href="obras/index.html">Obras</a></li>
+        <li><a href="agenda/index.html">Agenda</a></li>
+        <li><a href="compania/index.html">Compañía</a></li>
+        <li><a href="talleres/index.html">Talleres</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" aria-label="Profesionales">
+      <h4>Profesionales</h4>
+      <ul role="list">
+        <li><a href="prensa/index.html">Prensa</a></li>
+        <li><a href="prensa/index.html#dossier">Dossier</a></li>
+        <li><a href="prensa/index.html#fichas">Fichas técnicas</a></li>
+        <li><a href="contacto/index.html">Contratación</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" aria-label="Redes sociales">
+      <h4>Síguenos</h4>
+      <ul role="list">
+        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+        <li><a href="https://vimeo.com" target="_blank" rel="noopener noreferrer">Vimeo</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer__bottom">
+    <p class="footer__copy">© 2024 La Colmena CIA. Todos los derechos reservados.</p>
+    <div class="footer__social" aria-label="Redes sociales">
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer">Vimeo</a>
+      <a href="contacto/index.html">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" role="dialog" aria-label="Imagen ampliada" aria-modal="true">
+  <button class="lightbox__close" aria-label="Cerrar imagen">×</button>
+  <img src="" alt="" />
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

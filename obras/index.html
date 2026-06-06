@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obras — La Colmena CIA</title>
+  <meta name="description" content="Repertorio completo de La Colmena CIA: obras en gira, en creación y archivo. Solos, piezas de grupo y site-specific." />
+  <link rel="icon" href="../assets/images/logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<header>
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="../index.html" class="nav__logo" aria-label="La Colmena CIA - Inicio">
+      <img src="../assets/images/logo.jpg" alt="Logo La Colmena CIA" />
+      <span class="nav__logo-text">La <span>Colmena</span></span>
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html" class="active">Obras</a></li>
+      <li><a href="../agenda/index.html">Agenda</a></li>
+      <li><a href="../compania/index.html">Compañía</a></li>
+      <li><a href="../prensa/index.html">Prensa</a></li>
+      <li><a href="../talleres/index.html">Talleres</a></li>
+      <li><a href="../contacto/index.html" class="nav__cta">Contacto</a></li>
+    </ul>
+    <button class="nav__burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </nav>
+  <nav class="nav__mobile" aria-label="Menú móvil">
+    <a href="index.html">Obras</a>
+    <a href="../agenda/index.html">Agenda</a>
+    <a href="../compania/index.html">Compañía</a>
+    <a href="../prensa/index.html">Prensa</a>
+    <a href="../talleres/index.html">Talleres</a>
+    <a href="../contacto/index.html">Contacto</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-hero">
+    <p class="page-hero__label">Repertorio</p>
+    <h1 class="page-hero__title">Obras</h1>
+    <p class="page-hero__sub">Piezas para sala, site-specific y espacio público. Un archivo vivo que crece desde la investigación.</p>
+  </div>
+
+  <div class="section">
+
+    <!-- FILTROS -->
+    <div class="filter-bar" role="group" aria-label="Filtrar obras">
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="gira">En gira</button>
+      <button class="filter-btn" data-filter="creacion">En creación</button>
+      <button class="filter-btn" data-filter="archivo">Archivo</button>
+    </div>
+
+    <!-- EN GIRA -->
+    <div class="mb-2">
+      <span class="section__label">En gira</span>
+    </div>
+    <div class="obras-grid" style="margin-bottom:4rem;">
+
+      <article class="obra-card" data-estado="gira">
+        <div class="obra-card--placeholder" style="background:#151210;">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="enjambre.html" class="obra-card__overlay" aria-label="Ver detalles de Enjambre">
+          <span class="obra-card__tag obra-card__tag--gira">En gira</span>
+          <h2 class="obra-card__title">Enjambre</h2>
+          <p class="obra-card__meta">2023 · Grupo (7 bailarines) · 55 min · Sala</p>
+          <p class="obra-card__desc">La colmena como sistema nervioso. Siete cuerpos que piensan juntos.</p>
+        </a>
+      </article>
+
+      <article class="obra-card" data-estado="gira" style="background:#100f0d;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="umbral.html" class="obra-card__overlay" aria-label="Ver detalles de Umbral">
+          <span class="obra-card__tag obra-card__tag--gira">En gira</span>
+          <h2 class="obra-card__title">Umbral</h2>
+          <p class="obra-card__meta">2021 · Solo · 40 min · Sala / Calle</p>
+          <p class="obra-card__desc">Solo de la coreógrafa. Investigación sobre el instinto y la decisión.</p>
+        </a>
+      </article>
+
+    </div>
+
+    <!-- EN CREACIÓN -->
+    <div class="mb-2">
+      <span class="section__label">En creación</span>
+    </div>
+    <div class="obras-grid" style="margin-bottom:4rem;">
+
+      <article class="obra-card" data-estado="creacion" style="background:#0f0c0b;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="raiz.html" class="obra-card__overlay" aria-label="Ver detalles de Raíz">
+          <span class="obra-card__tag obra-card__tag--creacion">En creación</span>
+          <h2 class="obra-card__title">Raíz</h2>
+          <p class="obra-card__meta">2024 · Dúo · 35 min · Sala</p>
+          <p class="obra-card__desc">Dos cuerpos que negocian el suelo como memoria y herencia.</p>
+        </a>
+      </article>
+
+    </div>
+
+    <!-- ARCHIVO -->
+    <div class="mb-2">
+      <span class="section__label">Archivo</span>
+    </div>
+    <div class="obras-grid">
+
+      <article class="obra-card" data-estado="archivo" style="background:#0d0c0b; opacity:.75;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="piel.html" class="obra-card__overlay" aria-label="Ver detalles de Piel">
+          <span class="obra-card__tag">Archivo</span>
+          <h2 class="obra-card__title">Piel</h2>
+          <p class="obra-card__meta">2019 · Trío · 50 min · Site-specific</p>
+          <p class="obra-card__desc">Disponible bajo petición. Obra para espacios arquitectónicos singulares.</p>
+        </a>
+      </article>
+
+      <article class="obra-card" data-estado="archivo" style="background:#0b0a09; opacity:.75;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="celdas.html" class="obra-card__overlay" aria-label="Ver detalles de Celdas">
+          <span class="obra-card__tag">Archivo</span>
+          <h2 class="obra-card__title">Celdas</h2>
+          <p class="obra-card__meta">2017 · Grupo · 60 min · Sala</p>
+          <p class="obra-card__desc">Primera pieza de la compañía. Las células como metáfora de lo social.</p>
+        </a>
+      </article>
+
+      <article class="obra-card" data-estado="archivo" style="background:#0c0b09; opacity:.75;">
+        <div class="obra-card--placeholder">
+          <div class="obra-card__bg" aria-hidden="true"></div>
+        </div>
+        <a href="campo.html" class="obra-card__overlay" aria-label="Ver detalles de Campo">
+          <span class="obra-card__tag">Archivo</span>
+          <h2 class="obra-card__title">Campo</h2>
+          <p class="obra-card__meta">2018 · Dúo · 30 min · Espacio público</p>
+          <p class="obra-card__desc">Pieza urbana. Disponible bajo petición para festivales de calle.</p>
+        </a>
+      </article>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- CONTACTO STRIP -->
+<div class="contact-strip" role="complementary">
+  <div>
+    <h2>¿Quieres programar alguna obra?</h2>
+    <p>Contacta para consultar disponibilidad, fichas técnicas y condiciones.</p>
+  </div>
+  <a href="../contacto/index.html" class="btn">Solicitar información →</a>
+</div>
+
+<footer class="footer" aria-label="Pie de página">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <img src="../assets/images/logo.jpg" alt="Logo La Colmena CIA" />
+      <p>Compañía de danza contemporánea con sede en Sevilla. En gira nacional e internacional.</p>
+    </div>
+    <nav class="footer__col"><h4>Secciones</h4><ul><li><a href="index.html">Obras</a></li><li><a href="../agenda/index.html">Agenda</a></li><li><a href="../compania/index.html">Compañía</a></li><li><a href="../talleres/index.html">Talleres</a></li></ul></nav>
+    <nav class="footer__col"><h4>Profesionales</h4><ul><li><a href="../prensa/index.html">Prensa</a></li><li><a href="../prensa/index.html#dossier">Dossier</a></li><li><a href="../contacto/index.html">Contratación</a></li></ul></nav>
+    <nav class="footer__col"><h4>Síguenos</h4><ul><li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo</a></li></ul></nav>
+  </div>
+  <div class="footer__bottom">
+    <p class="footer__copy">© 2024 La Colmena CIA. Todos los derechos reservados.</p>
+    <div class="footer__social"><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a><a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo</a></div>
+  </div>
+</footer>
+
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lightbox__close" aria-label="Cerrar">×</button>
+  <img src="" alt="" />
+</div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
