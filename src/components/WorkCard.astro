@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+const { work } = Astro.props as { work: CollectionEntry<'works'> };
+
+const statusClassMap: Record<string, string> = {
+  gira: 'obra-card__tag--gira',
+  creacion: 'obra-card__tag--creacion',
+  archivo: '',
+};
+
+const workSlug = work.id.replace(/\.[^.]+$/, '');
+---
+
+<article class="obra-card" data-estado={work.data.status}>
+  <img src={work.data.headerImage} alt="" loading="lazy" aria-hidden="true" />
+  <a href={`/obras/${workSlug}/`} class="obra-card__overlay" aria-label={`Ver ${work.data.title}`}>
+    <span class:list={["obra-card__tag", statusClassMap[work.data.status]]}>{work.data.statusLabel}</span>
+    <h3 class="obra-card__title">{work.data.title}</h3>
+    <p class="obra-card__meta">{work.data.cardMeta}</p>
+    <p class="obra-card__desc">{work.data.cardDescription}</p>
+  </a>
+</article>

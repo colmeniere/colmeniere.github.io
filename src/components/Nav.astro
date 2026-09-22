@@ -1,0 +1,39 @@
+---
+import { site } from '../data/site';
+
+const pathname = Astro.url.pathname;
+
+const isActive = (href: string) => {
+  if (href === '/') {
+    return pathname === '/';
+  }
+
+  return pathname === href || pathname.startsWith(href);
+};
+---
+
+<header>
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="/" class="nav__logo" aria-label={`${site.name} - Inicio`}>
+      <img src="/assets/images/logo.jpg" alt="Logo La Colmena CIA" />
+      <span class="nav__logo-text">La <span>Colmena</span></span>
+    </a>
+    <ul class="nav__links" role="list">
+      {site.navLinks.map((link) => (
+        <li>
+          <a href={link.href} class:list={{ nav__cta: Boolean(link.cta), active: isActive(link.href) }}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <button class="nav__burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <nav class="nav__mobile" aria-label="Menú móvil">
+    {site.navLinks.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+  </nav>
+</header>

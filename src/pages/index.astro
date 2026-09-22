@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AgendaItem from '../components/AgendaItem.astro';
+import ContactStrip from '../components/ContactStrip.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { site } from '../data/site';
+import { getCollection } from 'astro:content';
+import { getAgendaEntries, sortUpcoming } from '../utils/agenda';
+
+const works = (await getCollection('works')).sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const featuredWorks = works.filter((work) => work.data.featured).slice(0, 2);
+const upcomingAgenda = sortUpcoming(getAgendaEntries(works)).slice(0, 4);
+---
+
+<BaseLayout title={site.title} description={site.description}>
+  <main>
+    <section class="hero" aria-label="Portada">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__pattern" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">{site.home.eyebrow}</p>
+        <h1 class="hero__title">
+          {site.home.title[0]}<br />
+          <em>{site.home.title[1]}</em><br />
+          {site.home.title[2]}
+        </h1>
+        <p class="hero__tagline">{site.home.tagline}</p>
+        <div class="hero__actions">
+          <a href="/obras/" class="btn btn--primary">Ver obras</a>
+          <a href="/contacto/" class="btn btn--outline">Contratación</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="obras-title">
+      <div class="section">
+        <SectionHeader label="Repertorio" title="Obras destacadas" linkHref="/obras/" linkText="Ver todo el repertorio →" />
+        <div class="obras-grid">
+          {featuredWorks.map((work) => <WorkCard work={work} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section--dark" aria-labelledby="agenda-title">
+      <div class="section">
+        <SectionHeader label="Gira" title="Próximas funciones" linkHref="/agenda/" linkText="Agenda completa →" />
+        <div class="agenda-list" role="list" aria-label="Próximas funciones">
+          {upcomingAgenda.map((item) => <AgendaItem item={item} />)}
+          {upcomingAgenda.length === 0 && <p class="agenda-empty">No hay próximas funciones anunciadas.</p>}
+        </div>
+      </div>
+    </section>
+
+    <!-- <div class="press-quote reveal" aria-label="Crítica destacada">
+      <blockquote class="press-quote__text">{site.home.quote}</blockquote>
+      <cite class="press-quote__source">{site.home.quoteSource}</cite>
+    </div> -->
+
+    <section aria-labelledby="cia-title">
+      <div class="section">
+        <div class="company-brief">
+          <div class="company-brief__img reveal">
+            <img src="/assets/images/logo.jpg" alt="La Colmena CIA" loading="lazy" />
+          </div>
+          <div class="company-brief__text reveal">
+            <div>
+              <span class="section__label">{site.home.companyTitle}</span>
+            </div>
+            <h2 id="cia-title">Un lenguaje<br /><em>construido</em><br />desde adentro</h2>
+            <div class="separator"></div>
+            {site.home.companyParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ContactStrip title="¿Quieres programar una obra?" text="Contacta para consultar disponibilidad, fichas técnicas y condiciones." href="/contacto/" label="Solicitar información →" />
+  </main>
+</BaseLayout>

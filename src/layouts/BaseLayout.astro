@@ -1,0 +1,134 @@
+---
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
+import { site } from '../data/site';
+
+const {
+  title = site.title,
+  description = site.description,
+  image = '/assets/images/logo.jpg',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <link rel="icon" href="/assets/images/logo.jpg" type="image/jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+
+    <div class="lightbox" role="dialog" aria-label="Imagen ampliada" aria-modal="true">
+      <button class="lightbox__close" aria-label="Cerrar imagen">×</button>
+      <img src="" alt="" />
+    </div>
+
+    <script type="module" is:inline>
+      const nav = document.querySelector('.nav');
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          nav.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+      }
+
+      const burger = document.querySelector('.nav__burger');
+      const mobileNav = document.querySelector('.nav__mobile');
+      if (burger && mobileNav) {
+        burger.addEventListener('click', () => {
+          burger.classList.toggle('open');
+          mobileNav.classList.toggle('open');
+          document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobileNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            burger.classList.remove('open');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      document.querySelectorAll('.press-grid, .downloads-grid, .team-grid').forEach((grid) => {
+        Array.from(grid.children).forEach((child, index) => {
+          child.style.transitionDelay = `${index * 0.07}s`;
+          child.classList.add('reveal');
+        });
+      });
+
+      const revealElements = document.querySelectorAll('.reveal');
+      if (revealElements.length && typeof IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach((element) => observer.observe(element));
+      } else {
+        revealElements.forEach((element) => element.classList.add('visible'));
+      }
+
+      const lightbox = document.querySelector('.lightbox');
+      const lightboxImage = lightbox && lightbox.querySelector('img');
+      if (lightbox && lightboxImage) {
+        document.querySelectorAll('.gallery-grid img').forEach((image) => {
+          image.addEventListener('click', () => {
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+          });
+        });
+
+        lightbox.addEventListener('click', (event) => {
+          if (event.target === lightbox || event.target.classList.contains('lightbox__close')) {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const button = contactForm.querySelector('button[type="submit"]');
+          if (!button) return;
+
+          const originalLabel = button.textContent;
+          button.textContent = 'Mensaje enviado ✓';
+          button.disabled = true;
+
+          window.setTimeout(() => {
+            button.textContent = originalLabel;
+            button.disabled = false;
+            contactForm.reset();
+          }, 3000);
+        });
+      }
+    </script>
+  </body>
+</html>

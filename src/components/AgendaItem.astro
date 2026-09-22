@@ -1,0 +1,28 @@
+---
+import type { AgendaEntry } from '../utils/agenda';
+
+const { item } = Astro.props as { item: AgendaEntry };
+
+const dateFormatter = new Intl.DateTimeFormat('es-ES', { day: '2-digit' });
+const monthFormatter = new Intl.DateTimeFormat('es-ES', { month: 'short' });
+const yearFormatter = new Intl.DateTimeFormat('es-ES', { year: 'numeric' });
+
+const day = dateFormatter.format(item.date);
+const month = `${monthFormatter.format(item.date)} ${yearFormatter.format(item.date)}`;
+---
+
+<div class="agenda-item reveal" role="listitem" style={item.past ? 'opacity:.65;' : ''}>
+  <div class="agenda-date" aria-label={`${day} de ${month}`}>
+    <div class="agenda-date__day">{day}</div>
+    <div class="agenda-date__month">{month}</div>
+  </div>
+  <div class="agenda-info">
+    <p class="agenda-info__obra"><a href={`/obras/${item.workSlug}/`}>{item.workTitle}</a></p>
+    <p class="agenda-info__venue">
+      <strong>{item.venue}</strong> · {item.city}, {item.country}
+    </p>
+  </div>
+  <div class="agenda-actions">
+    {!item.past && item.url ? <a href={item.url} class="btn btn--sm btn--outline">{item.label}</a> : null}
+  </div>
+</div>

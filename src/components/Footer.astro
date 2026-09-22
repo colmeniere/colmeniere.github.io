@@ -1,0 +1,48 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="footer" aria-label="Pie de página">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <img src="/assets/images/logo.jpg" alt="Logo La Colmena CIA" />
+      <p>Compañía de danza con sede en Sevilla. </p>
+    </div>
+    <nav class="footer__col" aria-label="Secciones">
+      <h4>Secciones</h4>
+      <ul role="list">
+        {site.navLinks.filter((link) => !link.cta).map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <nav class="footer__col" aria-label="Profesionales">
+      <h4>Profesionales</h4>
+      <ul role="list">
+        <!-- <li><a href="/prensa/">Prensa</a></li>
+        <li><a href="/prensa/#dossier">Dossier</a></li>
+        <li><a href="/prensa/#fichas">Fichas técnicas</a></li> -->
+        <li><a href="/contacto/">Contratación</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" aria-label="Síguenos">
+      <h4>Síguenos</h4>
+      <ul role="list">
+        {site.socialLinks.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <div class="footer__bottom">
+    <p class="footer__copy">© 2026 La Colmena CIA. Todos los derechos reservados.</p>
+    <div class="footer__social" aria-label="Redes sociales">
+      {site.socialLinks.slice(0, 2).map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+      ))}
+      <a href="/contacto/">Contacto</a>
+    </div>
+  </div>
+</footer>

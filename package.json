@@ -1,0 +1,17 @@
+{
+  "name": "lacolmena",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "astro": "^5.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
