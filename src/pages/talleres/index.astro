@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout title={`Talleres — ${site.name}`} description="Laboratorios, workshops y proyectos comunitarios.">
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">{site.workshops.label}</p>
+      <h1 class="page-hero__title">{site.workshops.title}</h1>
+      <p class="page-hero__sub">{site.workshops.intro}</p>
+    </section>
+
+    <div class="section">
+      <div class="company-brief" style="grid-template-columns:1fr;">
+        <div class="company-brief__text reveal">
+          <p>{site.workshops.paragraph}</p>
+        </div>
+      </div>
+
+      <SectionHeader label="Formatos" title="Propuestas" />
+      <div class="press-grid" style="margin-bottom:4rem;">
+        {site.workshops.cards.map((card) => (
+          <div class="press-card">
+            <p class="press-card__source">{card.number}</p>
+            <p class="press-card__text"><strong>{card.title}</strong></p>
+            <p class="press-card__text">{card.description}</p>
+            <div class="tag-cloud">
+              {card.tags.map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <SectionHeader label="Condiciones" title="Información práctica" />
+      <div class="press-grid">
+        {site.workshops.conditions.map((condition, index) => (
+          <div class="press-card">
+            <p class="press-card__source">0{index + 1}</p>
+            <p class="press-card__text">{condition}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <ContactStrip title="¿Quieres llevar un taller a tu espacio?" text="Diseñamos sesiones a medida para teatros, centros educativos y proyectos comunitarios." href="/contacto/" label="Consultar fechas →" />
+  </main>
+</BaseLayout>

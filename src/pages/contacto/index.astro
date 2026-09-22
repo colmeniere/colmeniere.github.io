@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout title={`Contacto — ${site.name}`} description={site.contactPage.intro}>
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">{site.contactPage.label}</p>
+      <h1 class="page-hero__title">{site.contactPage.title}</h1>
+      <p class="page-hero__sub">{site.contactPage.intro}</p>
+    </section>
+
+    <div class="section">
+      <div class="press-grid" style="margin-bottom:3rem;">
+        <!-- <div class="press-card">
+          <p class="press-card__source">Contratación</p>
+          <p class="press-card__text"><a href={`mailto:${site.contactInfo.bookingEmail}`}>{site.contactInfo.bookingEmail}</a></p>
+          <p class="press-card__text">{site.contactInfo.city}</p>
+        </div> -->
+        <!-- <div class="press-card">
+          <p class="press-card__source">Prensa</p>
+          <p class="press-card__text"><a href={`mailto:${site.contactInfo.pressEmail}`}>{site.contactInfo.pressEmail}</a></p>
+          <p class="press-card__text">Material gráfico y acreditaciones.</p>
+        </div>
+        <div class="press-card">
+          <p class="press-card__source">Talleres</p>
+          <p class="press-card__text"><a href={`mailto:${site.contactInfo.workshopsEmail}`}>{site.contactInfo.workshopsEmail}</a></p>
+          <p class="press-card__text">Laboratorios, mediación y residencias.</p>
+        </div> -->
+        <div class="press-card">
+          <p class="press-card__source">General</p>
+          <p class="press-card__text"><a href={`mailto:${site.contactInfo.generalEmail}`}>{site.contactInfo.generalEmail}</a></p>
+          <p class="press-card__text">{site.contactInfo.city}</p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

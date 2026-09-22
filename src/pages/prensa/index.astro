@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout title={`Prensa — ${site.name}`} description="Descarga dossiers, fichas técnicas y material gráfico.">
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">{site.press.label}</p>
+      <h1 class="page-hero__title">{site.press.title}</h1>
+      <p class="page-hero__sub">{site.press.intro}</p>
+    </section>
+
+    <div class="section">
+      <SectionHeader label="Crítica" title="Press quotes" />
+      <div class="press-grid" style="margin-bottom:4rem;">
+        {site.press.quotes.map((quote) => (
+          <div class="press-card">
+            <p class="press-card__source">{quote.source}</p>
+            <p class="press-card__text">{quote.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <SectionHeader label="Descargas" title="Material profesional" />
+      <div class="downloads-grid" id="dossier">
+        {site.press.downloads.map((download) => (
+          <a href="#" class="download-card">
+            <span class="download-card__icon">{download.icon}</span>
+            <span class="download-card__name">{download.name}</span>
+            <span class="download-card__type">{download.type}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <ContactStrip title="¿Necesitas acreditación o imágenes?" text="Escríbenos y te compartimos el material adecuado para prensa y programación." href="/contacto/" label="Contactar con prensa →" />
+  </main>
+</BaseLayout>

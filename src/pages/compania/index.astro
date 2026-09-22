@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout title={`Compañía — ${site.name}`} description={site.description}>
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">{site.company.label}</p>
+      <h1 class="page-hero__title">{site.company.title}</h1>
+      <p class="page-hero__sub">{site.company.intro}</p>
+    </section>
+
+    <div class="section">
+      <div class="company-brief">
+        <div class="company-brief__img reveal">
+          <img src={site.company.portrait} alt="Coreografa" loading="lazy" />
+        </div>
+        <div class="company-brief__text reveal">
+          <span class="section__label">{site.company.portraitCredit}</span>
+          <h2>{site.company.bioTitle}</h2>
+          <div class="separator"></div>
+          <p>{site.company.bioLead}</p>
+          {site.company.bioParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+
+      <div style="margin-top:4rem;">
+        <SectionHeader label="Recorrido" title="Línea de tiempo" />
+        <ol class="timeline" aria-label="Historia de la compañía">
+          {site.company.timeline.map((item) => (
+            <li class="timeline__item">
+              <time class="timeline__year" datetime={item.year}>{item.year}</time>
+              <span class="timeline__marker" aria-hidden="true"></span>
+              <p class="timeline__text">{item.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div style="margin-top:4rem;">
+        <SectionHeader label="Equipo" title="Colaboraciones habituales" />
+        <div class="press-grid">
+          {site.company.team.map((item) => (
+            <div class="press-card">
+              <p class="press-card__source">{item.role}</p>
+              <p class="press-card__text">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style="margin-top:4rem;">
+        <SectionHeader label="Campos" title="Áreas de trabajo" />
+        <div class="tag-cloud">
+          {site.company.collaborators.map((item) => <span class="tag">{item}</span>)}
+        </div>
+      </div>
+    </div>
+
+    <ContactStrip title="¿Quieres colaborar con la compañía?" text="Si tienes una propuesta artística, pedagógica o de mediación, escríbenos." href="/contacto/" label="Proponer colaboración →" />
+  </main>
+</BaseLayout>

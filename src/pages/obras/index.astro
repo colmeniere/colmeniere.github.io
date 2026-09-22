@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { site } from '../../data/site';
+import { getCollection } from 'astro:content';
+
+const works = (await getCollection('works')).sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const groupedWorks = {
+  gira: works.filter((work) => work.data.status === 'gira'),
+  creacion: works.filter((work) => work.data.status === 'creacion'),
+  archivo: works.filter((work) => work.data.status === 'archivo'),
+};
+---
+
+<BaseLayout title={`Obras — ${site.name}`} description="Repertorio completo de La Colmena CIA: obras en gira, en creación y archivo.">
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">Repertorio</p>
+      <h1 class="page-hero__title">Obras</h1>
+      <p class="page-hero__sub">Piezas para sala, site-specific y espacio público. Un archivo vivo que crece desde la investigación.</p>
+    </section>
+
+    <div class="section">
+      <div class="filter-bar" role="group" aria-label="Filtrar obras">
+        <a class="filter-btn active" href="#gira">Todas</a>
+        <a class="filter-btn" href="#gira">En gira</a>
+        <a class="filter-btn" href="#creacion">En creación</a>
+        <a class="filter-btn" href="#archivo">Archivo</a>
+      </div>
+
+      <section id="gira">
+        <SectionHeader label="En gira" title="Obras activas" />
+        <div class="obras-grid" style="margin-bottom:4rem;">
+          {groupedWorks.gira.map((work) => <WorkCard work={work} />)}
+        </div>
+      </section>
+
+      <section id="creacion">
+        <SectionHeader label="En creación" title="Obras en proceso" />
+        <div class="obras-grid" style="margin-bottom:4rem;">
+          {groupedWorks.creacion.map((work) => <WorkCard work={work} />)}
+        </div>
+      </section>
+
+      <section id="archivo">
+        <SectionHeader label="Archivo" title="Obras de repertorio" />
+        <div class="obras-grid">
+          {groupedWorks.archivo.map((work) => <WorkCard work={work} />)}
+        </div>
+      </section>
+    </div>
+
+    <ContactStrip title="¿Quieres programar alguna obra?" text="Contacta para consultar disponibilidad, fichas técnicas y condiciones." href="/contacto/" label="Solicitar información →" />
+  </main>
+</BaseLayout>

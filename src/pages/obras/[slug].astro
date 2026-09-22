@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import AgendaItem from '../../components/AgendaItem.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { site } from '../../data/site';
+import { getAgendaEntries, sortPast, sortUpcoming } from '../../utils/agenda';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  return works.map((work) => ({
+    params: { slug: work.id.replace(/\.[^.]+$/, '') },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props as { work: CollectionEntry<'works'> };
+const { Content } = await render(work);
+const events = getAgendaEntries([work]);
+const upcoming = sortUpcoming(events);
+const past = sortPast(events);
+const statusClass = work.data.status === 'creacion'
+  ? 'obra-card__tag--creacion'
+  : work.data.status === 'gira'
+    ? 'obra-card__tag--gira'
+    : '';
+---
+
+<BaseLayout title={`${work.data.title} — ${site.name}`} description={work.data.cardDescription}>
+  <main>
+    <section class="page-hero work-hero" style={`--work-header-image: url("${work.data.headerImage}")`}>
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__pattern" aria-hidden="true"></div>
+      <div class="work-hero__content">
+        <p class="page-hero__label"><a href="/obras/">Obras</a> / {work.data.title}</p>
+        <div class="work-hero__heading">
+          <div>
+            <span class:list={["obra-card__tag", statusClass]}>{work.data.statusLabel}</span>
+            <h1 class="page-hero__title">{work.data.title}</h1>
+          </div>
+          <a href="/contacto/" class="btn btn--primary">Consultar disponibilidad</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="obra-detail">
+      <div class="obra-detail__main">
+        <p class="obra-detail__year">{work.data.year}</p>
+        <blockquote class="obra-detail__synopsis">{work.data.synopsis}</blockquote>
+        <div class="obra-detail__text"><Content /></div>
+
+        {work.data.video && (
+          <div class="work-video">
+            {work.data.video.url
+              ? <iframe src={work.data.video.url} title={work.data.video.label} loading="lazy" allowfullscreen></iframe>
+              : <div class="work-video__placeholder"><span>▶</span><p>{work.data.video.label}</p>{work.data.video.note && <small>{work.data.video.note}</small>}</div>}
+          </div>
+        )}
+
+        {work.data.gallery.length > 0 && (
+          <section class="work-section" aria-labelledby="gallery-title">
+            <span class="section__label" id="gallery-title">Galería</span>
+            <div class="gallery-grid">
+              {work.data.gallery.map((image) => <img src={image.src} alt={image.alt} loading="lazy" />)}
+            </div>
+            {work.data.galleryCredit && <p class="work-caption">{work.data.galleryCredit}</p>}
+          </section>
+        )}
+
+        {work.data.pressQuotes.length > 0 && (
+          <section class="work-section" aria-labelledby="press-title">
+            <span class="section__label" id="press-title">Prensa</span>
+            <div class="press-grid">
+              {work.data.pressQuotes.map((quote) => (
+                <article class="press-card">
+                  <p class="press-card__source">{quote.source}</p>
+                  <p class="press-card__text">{quote.text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <div class="work-cta">
+          <p>¿Te interesa programar esta obra?</p>
+          <h2>Consulta disponibilidad y condiciones</h2>
+          <div>
+            <a href="/contacto/" class="btn btn--primary">Contactar para contratación</a>
+            <a href={work.data.dossierUrl ?? '/prensa/#dossier'} class="btn btn--outline">Solicitar dossier</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="obra-detail__sidebar">
+        <div class="ficha">
+          <p class="ficha__title">Ficha de la obra</p>
+          <div class="ficha__row"><span class="ficha__key">Año</span><span class="ficha__val">{work.data.year}</span></div>
+          <div class="ficha__row"><span class="ficha__key">Duración</span><span class="ficha__val">{work.data.duration}</span></div>
+          <div class="ficha__row"><span class="ficha__key">Formato</span><span class="ficha__val">{work.data.format}</span></div>
+          {work.data.performers && <div class="ficha__row"><span class="ficha__key">Intérpretes</span><span class="ficha__val">{work.data.performers}</span></div>}
+          <div class="ficha__row"><span class="ficha__key">Estado</span><span class="ficha__val">{work.data.statusLabel}</span></div>
+          {work.data.language && <div class="ficha__row"><span class="ficha__key">Idioma</span><span class="ficha__val">{work.data.language}</span></div>}
+          <div class="ficha__row"><span class="ficha__key">Disponibilidad</span><span class="ficha__val">{work.data.availability}</span></div>
+        </div>
+
+        {work.data.credits.length > 0 && (
+          <div class="ficha">
+            <p class="ficha__title">Ficha artística</p>
+            {work.data.credits.map((credit) => <div class="ficha__row"><span class="ficha__key">{credit.role}</span><span class="ficha__val">{credit.name}</span></div>)}
+          </div>
+        )}
+
+        {work.data.technical.length > 0 && (
+          <div class="ficha">
+            <p class="ficha__title">Ficha técnica resumida</p>
+            {work.data.technical.map((item) => <div class="ficha__row"><span class="ficha__key">{item.label}</span><span class="ficha__val">{item.value}</span></div>)}
+          </div>
+        )}
+
+        {work.data.support.length > 0 && (
+          <div class="ficha">
+            <p class="ficha__title">Apoyos y residencias</p>
+            <div class="ficha__list">{work.data.support.map((item) => <p>{item}</p>)}</div>
+          </div>
+        )}
+
+        {work.data.dossierUrl && <a href={work.data.dossierUrl} class="btn btn--outline work-dossier">Descargar dossier PDF</a>}
+      </aside>
+    </div>
+
+    {events.length > 0 && (
+      <section class="section--dark">
+        <div class="section work-agenda">
+          {upcoming.length > 0 && (
+            <div>
+              <SectionHeader label="Próximas" title="Funciones programadas" />
+              <div class="agenda-list" role="list" aria-label={`Próximas funciones de ${work.data.title}`}>
+                {upcoming.map((item) => <AgendaItem item={item} />)}
+              </div>
+            </div>
+          )}
+          {past.length > 0 && (
+            <div class:list={{ 'work-agenda__past': upcoming.length > 0 }}>
+              <SectionHeader label="Historial" title="Funciones realizadas" />
+              <div class="agenda-list" role="list" aria-label={`Historial de ${work.data.title}`}>
+                {past.map((item) => <AgendaItem item={item} />)}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    <ContactStrip title="¿Quieres programar esta obra?" text="Escríbenos para fichas técnicas, material gráfico y disponibilidad." href="/contacto/" label="Hablar con la compañía →" />
+  </main>
+</BaseLayout>

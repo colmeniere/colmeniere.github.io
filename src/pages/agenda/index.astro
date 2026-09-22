@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AgendaItem from '../../components/AgendaItem.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { site } from '../../data/site';
+import { getCollection } from 'astro:content';
+import { getAgendaEntries, sortPast, sortUpcoming } from '../../utils/agenda';
+
+const works = await getCollection('works');
+const agendaEntries = getAgendaEntries(works);
+const upcoming = sortUpcoming(agendaEntries);
+const past = sortPast(agendaEntries);
+---
+
+<BaseLayout title={`Agenda — ${site.name}`} description="Próximas funciones y gira de La Colmena CIA.">
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">Gira 2025–2026</p>
+      <h1 class="page-hero__title">Agenda</h1>
+      <p class="page-hero__sub">Próximas funciones y pasadas de La Colmena CIA. Para contratación, contacta directamente con la compañía.</p>
+    </section>
+
+    <div class="section">
+      <SectionHeader label="Próximas" title="En gira" />
+      <div class="agenda-list" role="list" aria-label="Próximas funciones">
+        {upcoming.map((item) => <AgendaItem item={item} />)}
+        {upcoming.length === 0 && <p class="agenda-empty">No hay próximas funciones anunciadas.</p>}
+      </div>
+
+      <div style="margin-top:5rem;">
+        <SectionHeader label="Pasado" title="Historial de gira" />
+        <div class="agenda-list" role="list" aria-label="Historial de funciones">
+          {past.map((item) => <AgendaItem item={item} />)}
+          {past.length === 0 && <p class="agenda-empty">Todavía no hay funciones anteriores.</p>}
+        </div>
+      </div>
+    </div>
+
+    <ContactStrip title="¿Quieres programar la compañía?" text="Contacta para consultar disponibilidad de fechas y obras." href="/contacto/" label="Escribir a la compañía →" />
+  </main>
+</BaseLayout>

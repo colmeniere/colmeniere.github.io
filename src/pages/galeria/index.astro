@@ -1,0 +1,62 @@
+---
+import { readdirSync } from 'node:fs';
+import { extname, join, relative, sep } from 'node:path';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactStrip from '../../components/ContactStrip.astro';
+import { site } from '../../data/site';
+
+const imageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif']);
+const imagesRoot = join(process.cwd(), 'public', 'assets', 'images');
+
+function collectImages(directory: string): string[] {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = join(directory, entry.name);
+    if (entry.isDirectory()) return collectImages(fullPath);
+    return imageExtensions.has(extname(entry.name).toLowerCase()) ? [fullPath] : [];
+  });
+}
+
+const images = collectImages(imagesRoot)
+  .map((filePath) => {
+    const relativePath = relative(imagesRoot, filePath);
+    const parts = relativePath.split(sep);
+
+    return {
+      src: `/assets/images/${parts.map(encodeURIComponent).join('/')}`,
+      collection: parts.slice(0, -1).join(' / '),
+      nested: parts.length > 1,
+    };
+  })
+  .filter((image) => image.nested)
+  .sort((a, b) => a.src.localeCompare(b.src, 'es', { numeric: true }));
+---
+
+<BaseLayout title={`Galería — ${site.name}`} description="Archivo fotográfico de La Colmena CIA.">
+  <main>
+    <section class="page-hero">
+      <p class="page-hero__label">Archivo visual</p>
+      <h1 class="page-hero__title">Galería</h1>
+      <p class="page-hero__sub">Imágenes de las obras, procesos y espacios de La Colmena CIA.</p>
+    </section>
+
+    <section class="section" aria-label="Archivo fotográfico">
+      <p class="gallery-archive__count">{images.length} {images.length === 1 ? 'imagen' : 'imágenes'}</p>
+      {images.length > 0 ? (
+        <div class="gallery-grid gallery-archive">
+          {images.map((image, index) => (
+            <figure class="gallery-archive__item">
+              <img src={image.src} alt={`${image.collection}, imagen ${index + 1}`} loading="lazy" decoding="async" />
+              <figcaption>
+                <small>{image.collection}</small>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      ) : (
+        <p class="gallery-archive__empty">Todavía no hay imágenes en el archivo.</p>
+      )}
+    </section>
+
+    <ContactStrip title="¿Necesitas material gráfico?" text="Contacta con la compañía para solicitar fotografías en alta resolución." href="/contacto/" label="Solicitar material →" />
+  </main>
+</BaseLayout>
