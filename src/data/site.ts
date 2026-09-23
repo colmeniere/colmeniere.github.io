@@ -19,10 +19,10 @@ export const site = {
     // { href: 'https://facebook.com', label: 'Facebook' },
   ],
   contactInfo: {
-    bookingEmail: 'contacto@lacolmena.es',
+    bookingEmail: 'contacto@lacolmenacia.com',
     // pressEmail: 'contacto@lacolmena.es',
     // workshopsEmail: 'talleres@lacolmena.es',
-    generalEmail: 'contacto@lacolmena.es',
+    generalEmail: 'contacto@lacolmenacia.com',
     city: 'Sevilla, España',
   },
   home: {
