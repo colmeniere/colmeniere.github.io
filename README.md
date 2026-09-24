@@ -212,21 +212,21 @@ Si no existe un dosier, elimina la línea o déjala comentada poniendo `#` al pr
 
 ## Añadir un vídeo
 
-En el archivo de la obra, utiliza un enlace preparado para insertar el vídeo:
+1. Guarda el archivo en `public/assets/videos/`. Usa preferentemente MP4 (vídeo H.264 y audio AAC) para que funcione en la mayoría de navegadores.
+2. Evita espacios y tildes en el nombre del archivo.
+3. En el archivo de la obra, indica la ruta desde `public`:
 
 ```yaml
 video:
   label: "Teaser — Nombre de la obra"
-  url: "https://www.youtube.com/embed/IDENTIFICADOR_DEL_VIDEO"
+  src: "/assets/videos/nombre-de-la-obra.mp4"
 ```
 
-Para Vimeo, el formato habitual es:
+Opcionalmente, puedes mostrar una imagen antes de reproducir el vídeo:
 
 ```yaml
-url: "https://player.vimeo.com/video/IDENTIFICADOR_DEL_VIDEO"
+  poster: "/assets/images/nombre-de-la-obra/cartel.jpg"
 ```
-
-No uses el enlace corto `youtu.be` ni la dirección normal de reproducción de YouTube, porque pueden no funcionar dentro de la página.
 
 ## Añadir una obra nueva
 
@@ -256,7 +256,7 @@ agenda: []
 - **Una imagen no aparece:** comprueba mayúsculas, minúsculas y extensión. `Foto.jpg` y `foto.jpg` pueden considerarse nombres distintos.
 - **Una fecha no aparece:** revisa que tenga el formato `2026-09-07`, con dos cifras para mes y día.
 - **Una obra no aparece en portada:** comprueba que tenga `featured: true`.
-- **El vídeo queda vacío:** usa una URL de tipo `youtube.com/embed/...` o `player.vimeo.com/video/...`.
+- **El vídeo queda vacío:** comprueba que el archivo exista dentro de `public/assets/videos/` y que la ruta y la extensión coincidan exactamente.
 - **Aparecen caracteres extraños:** guarda siempre los archivos con codificación UTF-8.
 
 Si algo deja de funcionar después de un cambio, vuelve al archivo en GitHub, abre **History**, entra en la versión anterior y usa **Revert** si está disponible. También puedes pedir ayuda indicando el archivo editado y el mensaje de error.

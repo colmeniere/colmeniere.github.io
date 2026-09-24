@@ -33,9 +33,9 @@ const works = defineCollection({
     technical: z.array(labelledValue).default([]),
     support: z.array(z.string()).default([]),
     video: z.object({
-      url: z.string().optional(),
+      src: z.string(),
+      poster: z.string().optional(),
       label: z.string(),
-      note: z.string().optional(),
     }).optional(),
     gallery: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
     galleryCredit: z.string().optional(),

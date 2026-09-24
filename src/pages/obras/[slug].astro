@@ -53,9 +53,16 @@ const statusClass = work.data.status === 'creacion'
 
         {work.data.video && (
           <div class="work-video">
-            {work.data.video.url
-              ? <iframe src={work.data.video.url} title={work.data.video.label} loading="lazy" allowfullscreen></iframe>
-              : <div class="work-video__placeholder"><span>▶</span><p>{work.data.video.label}</p>{work.data.video.note && <small>{work.data.video.note}</small>}</div>}
+            <video
+              src={work.data.video.src}
+              poster={work.data.video.poster}
+              aria-label={work.data.video.label}
+              controls
+              playsinline
+              preload="metadata"
+            >
+              Tu navegador no admite la reproducción de vídeo.
+            </video>
           </div>
         )}
 

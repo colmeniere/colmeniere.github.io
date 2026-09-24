@@ -49,8 +49,7 @@ technical:
 #   - "Festival de Otoño de Madrid (estreno)"
 video:
   label: "Teaser — Escaparate (2026)"
-  note: "Añade una URL de embed de Vimeo o YouTube en el campo url"
-  url: "https://youtu.be/-e3OTzZVHuw?si=D6aeghwOB2ILxVU6"
+  src: "/assets/videos/escaparate.mp4"
 gallery:
   - src: "/assets/images/escaparate/Escaparate_1.jpg"
     alt: "Escaparate — foto 1"
